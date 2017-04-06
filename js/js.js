@@ -1,4 +1,4 @@
-$(document).ready(function() { 
+$(document).ready(function() {
 	$('#skapa-konto').validate({ //Validerings plugin. Går igenom vissa krav och skriver ut felmeddelande ifall det inte följer reglerna.
 		rules: {
 			email: {
@@ -60,7 +60,7 @@ $(document).ready(function() {
 						{
 							$("#skapa-konto").after("<p class='error'>Det finns redan ett konto med den eposten.</p>");
 						}
-					},			
+					},
 					error: function(data){
 						console.log(data);
 					}
@@ -109,11 +109,11 @@ $(document).ready(function() {
 						else{
 							location.reload();
 						}
-					},			
+					},
 					error: function(data){
-						console.log(data);						
+						console.log(data);
 					}
-				});			
+				});
 		}
 	});
 
@@ -128,7 +128,7 @@ $(document).ready(function() {
 		messages: {
 			titel: {
 				required: "Du måste ha en titel",
-				minlength: "Minst 3 tecken" 
+				minlength: "Minst 3 tecken"
 			},
 			text: {
 				required: "Du måste skriva något i inlägget."
@@ -141,30 +141,32 @@ $(document).ready(function() {
 		var pappaid = $(this).parent().attr('id');
 		var json = '[{"id":"'+pappaid+'"}]';
 
-		$.ajax({
-			url: "ajax/delete.php",
-			global: false,
-			type: "get",
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			data : {
-				'id' : json
-			},
-			success: function(data){
-				$('#'+pappaid).fadeOut(300, function() {
-					$(this).remove();
-				});
-			},
-			error: function(data){
-				console.log(data);
-			}
-		});
+		var confirm = window.confirm("Vill du ta bort det här inlägget?");
+		if(confirm){
+
+			$.ajax({
+				url: "ajax/delete.php",
+				global: false,
+				type: "get",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				data : {
+					'id' : json
+				},
+				success: function(data){
+					$('#'+pappaid).fadeOut(300, function() {
+						$(this).remove();
+					});
+				},
+				error: function(data){
+					console.log(data);
+				}
+			});
+		}
 	});
 	$('.edit').on("click", function(event) {
 		event.preventDefault();
-
 		var pappaid = $(this).parent().attr('id');
-		var titel = $('#' + pappaid + " > h3").text();
-		var text = $('#' + pappaid + " > .content").text();
+		$('#' + pappaid).submit();
 	});
 });

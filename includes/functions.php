@@ -11,18 +11,21 @@ function createUser($email,$namn,$pass,$db){
 	else
 	{
 		return "no";
-	} 
+	}
 }
 
 function loginUser($email,$pass,$db){
-	$sql = "SELECT * FROM users WHERE email = '$email' AND password = '" . md5($pass) . "'";
+	$sql = "SELECT * FROM users WHERE email = '$email' AND password = '" . md5($pass) . "' LIMIT 1";
 
 	$run = mysqli_query($db,$sql);
+	$row = mysqli_fetch_assoc($run);
 
+	$id = $row['id'];
 	if(mysqli_num_rows($run) > 0)
 	{
 		$_SESSION['email'] = $email;
 		$_SESSION['loggedin'] = true;
+		$_SESSION['id'] = $id;
 		return "ok";
 	}
 	else
@@ -88,5 +91,36 @@ function deletePost($id,$db){
 	$sql = "DELETE FROM posts WHERE id = $id";
 
 	$result = mysqli_query($db,$sql) or die("Fel vid sql fråga");
+}
+
+function editPost($user_id, $post_id, $db){
+	$sql = "SELECT *  FROM posts WHERE id = $post_id LIMIT 1";
+	$run = mysqli_query($db, $sql);
+	$row = mysqli_fetch_assoc($run);
+
+	if($row['u_id'] === $user_id){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function getPost($post_id, $db){
+	$sql = "SELECT * FROM posts WHERE id = '$post_id'";
+
+	$result = mysqli_query($db,$sql) or die("Fel vid sql-fråga");
+	$array = array();
+
+	while($row = $result->fetch_assoc())
+	{
+		$array[] = $row;
+	}
+	return $array;
+}
+
+function updatePost($titel, $text, $postid, $db){
+	$sql = "UPDATE posts SET title = '$titel', content = '$text' WHERE id = '$postid'";
+	$result = mysqli_query($db, $sql) or die("Fel vid sql-fråga");
 }
 ?>

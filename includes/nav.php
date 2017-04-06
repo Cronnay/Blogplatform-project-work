@@ -12,7 +12,7 @@
 	else{
 		?>
 		<ul class='small'>
-			<li class="inline"><a href="/web2.0/projekt/web2.0/projekt/index.php">Framsidan</a></li>
+			<li class="inline"><a href="/web2.0/projekt/index.php">Framsidan</a></li>
 			<li class="inline"><a href="/web2.0/projekt/create.php">Skapa ett konto</a></li>
 		</ul>
 	<?php } ?>

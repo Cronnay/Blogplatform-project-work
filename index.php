@@ -1,4 +1,4 @@
-<?php 
+<?php
 include ("includes/head.php"); //head-taggen med alla meta attributen förutom title.
 ?>
 <title>Framsidan</title>
@@ -16,20 +16,23 @@ include ("includes/head.php"); //head-taggen med alla meta attributen förutom t
 						<h3 class='headline-post'><?php echo $post['title']; ?></h3>
 						<p class='content'><?php echo $post['content']; ?></p>
 						<p class='madeby'>Gjordes av <a href='user.php/<?php echo $post["u_id"]; ?>'><?php echo $post['email'] . "</a>, " . $post['created']; ?></p>
-						<?php 
+						<?php
 						if(isset($_SESSION['email'])){ //ifall $_session['email'] finns kommer resterande kod funka
 							if(correctUser($_SESSION['email'],$post['id'],$db) == true){ //ifall användaren har gjort det inlägget kommer möjligheten att ta bort inlägget och redigera
 								?>
 								<span class='madeby delete'><a href='#' id='delete-<?php echo $post["id"]; ?>'>Ta bort det här inlägget</a></span>
-								<span class='madeby edit'><a href="#" id='edit-<?php echo $post["id"]; ?>'>Redigera det här inlägget</a></span>
+								<form  action="edit.php" method="post" class="redigera-post"  id='edit-<?php echo $post["id"]; ?>'>
+									<span class='madeby edit'><a href="#">Redigera det här inlägget</a></span>
+									<input type="hidden" value="<?php echo $post['id']; ?>" name="editpost"/>
+								</form>
 
-						<?php 
+						<?php
 							} // stänger if-satsen för delete och edit knappen
 						} //stänger if-isset ?>
 					</div>
 					<?php }
 				?>
-			</div>	
+			</div>
 		</div>
 		<div id="login">
 			<?php if(isset($_SESSION['loggedin']) == true){ // ifall användaren är inloggad så tar den bort inloggningsformuläret
@@ -49,7 +52,7 @@ include ("includes/head.php"); //head-taggen med alla meta attributen förutom t
 				</form>
 				<h3 class="center plats-under"><a href='create.php'>Skapa ett konto här</a></h3>
 				<p class="error-msg"></p>
-			<?php }  // stänger else ?> 
+			<?php }  // stänger else ?>
 		</div>
 	</div>
 </body>
