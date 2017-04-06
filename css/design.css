@@ -1,0 +1,199 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	background-image: url("../img/framsida.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+
+}
+a:link{
+	color: white;
+	font-weight: normal;
+}
+a:hover{
+	color: #ccc9ce;
+}
+a:visited{
+	color: white;
+}
+.small{
+	width: 400px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+.big
+{
+	width: 600px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+.inline{
+	display: inline;
+}
+.inline a:link{
+	color:white;
+	text-decoration: none;
+	font-size: 14pt;
+	border-right: 1px white solid;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.inline a:hover{
+	color: #ccc9ce;
+	text-decoration: underline;
+}
+.inline a:visisted{
+	color: white;
+	text-decoration: none;
+}
+.container{
+	margin: 0 auto;
+	width: 1000px;
+}
+.center{
+	margin: 0 auto;
+	width: 300px;
+}
+.center.plats-under{
+	padding: 10px 5px 10px 5px;
+}
+.error{
+	color: red;
+	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
+}
+.approved{
+	font-size: 8pt;
+	color: green;
+}
+
+#posts{
+	float: left;
+	width: 648px;
+	background-color: rgba(255,255,255,0.4);
+	border-radius: 20px;
+	border: 1px white solid;
+}
+#login{
+	float: right;
+	width: 348px;
+	text-align: center;
+	background-color: rgba(102,0,153,0.3);
+	border-radius:20px;
+	border: 1px white solid;
+}
+.error-msg{
+	display: none;
+	color: red;
+	text-align: center;
+	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
+}
+.btn{
+	box-shadow: rgb(0, 0, 0) 2px 3px 13px 0px;
+	background: linear-gradient(rgb(90, 43, 97) 5%, rgb(51, 51, 51) 100%) rgb(90, 43, 97);
+	border-radius: 13px;
+	display: inline-block;
+	cursor: pointer;
+	color: rgb(255, 255, 255);
+	font-family: Arial;
+	font-size: 17px;
+	padding: 16px 31px;
+	text-decoration: none;
+	text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+}
+input{
+	margin: 10px 0px 10px 0px;
+	padding: 10px;
+	border: 2px solid gray;
+}
+.post{
+	margin: 0 auto;
+	width: 500px;
+}
+#create-account{
+	background-color: rgba(102,0,153,0.3);
+	border-radius:20px;
+	border: 1px white solid;
+	margin: 0 auto;
+	width: 400px;
+	text-align: center;
+	color: #333333;
+}
+.headline-post{
+	color: white;
+	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
+}
+.content{
+	color: white;
+	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
+}
+.madeby{
+	border-bottom: 1px solid rgba(255,255,255,0.3);
+	padding-bottom: 7px;
+}
+.madeby a:link{
+	color: inherit;
+}
+.madeby a:hover{
+	color: #ccc9ce;
+}
+.madeby a:visited{
+	color: inherit;
+}
+
+
+#allt{
+	margin: 0 auto;
+	width: 700px;
+	background-color: rgba(255,255,255,0.4);
+	border-radius: 20px;
+	border: 1px solid white;
+}
+#create-post{
+	margin: 0 auto;
+	border-bottom: 2px solid rgba(0,0,0,0.6);
+	width: 500px;
+}
+.header-text{
+	text-align: center;
+}
+#create-form{
+	width: 400px;
+	margin: 0 auto;
+	padding-left: 20px;
+}
+textarea#text{
+	width: 400px;
+	height: 200px;
+	resize: none;
+	border: 2px solid gray;
+	font-family: 'Roberto',sans-serif;
+
+}
+.create-btn{
+	box-shadow: rgb(0, 0, 0) 2px 3px 13px 0px;
+	background: linear-gradient(rgb(118, 128, 121) 5%, rgb(35, 41, 31) 100%) rgb(118, 128, 121);
+	border-radius: 13px;
+	display: inline-block;
+	cursor: pointer;
+	color: rgb(255, 255, 255);
+	font-family: Arial;
+	font-size: 17px;
+	padding: 16px 31px;
+	text-decoration: none;
+	text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+}
+.create-btn:hover{
+	background: black;
+}
+
+.popup{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
