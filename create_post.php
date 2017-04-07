@@ -1,6 +1,6 @@
-<?php 
+<?php
 include ("includes/head.php"); //head-taggen med alla meta attributen förutom title.
-if(isset($_SESSION['loggedin']) == true){ 
+if(isset($_SESSION['loggedin']) == true){
 
 	if(isset($_POST['titel'],$_POST['text'])){
 		$titel = trim($_POST['titel']);
@@ -39,31 +39,19 @@ if(isset($_SESSION['loggedin']) == true){
 						<div id='<?php echo $post['id']; ?>'>
 							<h3 class='headline-post'><a href='user.php/<?php echo $post["u_id"] . "/" . $post["id"]; ?>'><?php echo $post['title']; ?></a></h3>
 							<p class='madeby'>Upplagd <?php echo $post['created']; ?></p>
-							<?php 
+							<?php
 							if(isset($_SESSION['email'])){ //ifall $_session['email'] finns kommer resterande kod funka
 								if(correctUser($_SESSION['email'],$post['id'],$db) == true){ //ifall användaren har gjort det inlägget kommer möjligheten att ta bort inlägget och redigera
 								?>
 									<span class='madeby delete'><a href='#' id='delete-<?php echo $post["id"]; ?>'>Ta bort det här inlägget</a></span>
-									<span class='madeby edit'><a href="#" id='edit-<?php echo $post["id"]; ?>'>Redigera det här inlägget</a></span>
+									<span class='madeby edit'><a href="edit.php/<?php echo $post['id']; ?>">Redigera det här inlägget</a></span>
 
-						<?php 
+						<?php
 							} // stänger if-satsen för delete och edit knappen
 						} //stänger if-isset ?>
 						</div>
 					<?php } ?>
 					</div>
-				</div>
-			</div>
-
-			<div class='popup' id='popup'>
-				<div class='popup-content'>
-					<form method='post' id='popup-form'>
-						<label for='poptitel'>Titel</label><br>
-						<input type='text' name='poptitel' id='poptitel' value=''><br>
-						<label for='poptext'>Text</label><br>
-						<textarea name='poptext' id='text' value=''></textarea><br> 
-						<input type='submit' class='create-btn' value='Redigera'>
-					</form>
 				</div>
 			</div>
 		</div>

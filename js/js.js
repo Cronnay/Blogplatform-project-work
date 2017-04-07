@@ -164,9 +164,74 @@ $(document).ready(function() {
 			});
 		}
 	});
-	$('.edit').on("click", function(event) {
-		event.preventDefault();
-		var pappaid = $(this).parent().attr('id');
-		$('#' + pappaid).submit();
+
+	$('#byta-pass').validate({
+			rules: {
+				password: {
+					required: true,
+					minlength: 5
+				},
+				pass_again: {
+					required: true,
+					equalTo: '#password'
+				}
+			},
+			messages: {
+				password: {
+					required: "Du måste skriva dit ett lösenord",
+					minlength: "Minst 5 tecken"
+				},
+				pass_again: {
+					required: "Du måste skriva ett lösenord igen",
+					equalTo: "Det stämmer inte med ovan"
+				}
+			},
+			submitHandler: function(form, event){
+				event.preventDefault();
+				$('.container').append('<div id="myModal" class="modal"> ' + '<div class="modal-content">' + '<p>Du har bytt lösenord. Du blir omdirigerad om <b class="countdown">3</b></p></div></div>');
+
+				$('#myModal').css('display', 'block');
+				var update = function(){
+					$('.countdown').each(function() {
+							var count = parseInt($(this).html());
+							if(count !== 0){
+								$(this).html(count-1);
+							}
+					});
+				};
+				setInterval(update, 1000);
+				setTimeout(function() { form.submit(); }, 2500);
+			}
 	});
+
+	$('#byta-namn').validate({
+		rules: {
+			namn: {
+				required: true,
+				minlength: 2
+			}
+		},
+		messages: {
+			required: "Om du ska byta namn måste du ange ett nytt",
+			minlength: "Minst två bokstäver"
+		},
+		submitHandler: function(form, event){
+			event.preventDefault();
+			$('.container').append('<div id="myModal" class="modal"> ' + '<div class="modal-content">' + '<p>Du har bytt namn. Du blir omdirigerad om <b class="countdown">3</b></p></div></div>');
+			$('#myModal').show();
+
+
+			var update = function(){
+				$('.countdown').each(function() {
+						var count = parseInt($(this).html());
+						if(count !== 0){
+							$(this).html(count-1);
+						}
+				});
+			};
+			setInterval(update, 1000);
+			setTimeout(function() { form.submit(); }, 2500);
+		}
+	})
+
 });

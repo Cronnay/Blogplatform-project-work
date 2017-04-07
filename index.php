@@ -13,18 +13,15 @@ include ("includes/head.php"); //head-taggen med alla meta attributen förutom t
 					foreach ($result as $post){
 						?>
 					<div id='<?php echo $post["id"]; ?>'> <!-- div med unik id för att lättare hantera med jquery -->
-						<h3 class='headline-post'><?php echo $post['title']; ?></h3>
-						<p class='content'><?php echo $post['content']; ?></p>
-						<p class='madeby'>Gjordes av <a href='user.php/<?php echo $post["u_id"]; ?>'><?php echo $post['email'] . "</a>, " . $post['created']; ?></p>
-						<?php
-						if(isset($_SESSION['email'])){ //ifall $_session['email'] finns kommer resterande kod funka
-							if(correctUser($_SESSION['email'],$post['id'],$db) == true){ //ifall användaren har gjort det inlägget kommer möjligheten att ta bort inlägget och redigera
-								?>
-								<span class='madeby delete'><a href='#' id='delete-<?php echo $post["id"]; ?>'>Ta bort det här inlägget</a></span>
-								<form  action="edit.php" method="post" class="redigera-post"  id='edit-<?php echo $post["id"]; ?>'>
-									<span class='madeby edit'><a href="#">Redigera det här inlägget</a></span>
-									<input type="hidden" value="<?php echo $post['id']; ?>" name="editpost"/>
-								</form>
+							<h3 class='headline-post'><?php echo $post['title']; ?></h3>
+							<p class='content'><?php echo $post['content']; ?></p>
+							<p class='madeby'>Gjordes av <a href='user.php/<?php echo $post["u_id"]; ?>'><?php echo $post['email'] . "</a>, " . $post['created']; ?></p>
+							<?php
+							if(isset($_SESSION['email'])){ //ifall $_session['email'] finns kommer resterande kod funka
+								if(correctUser($_SESSION['email'],$post['id'],$db) == true){ //ifall användaren har gjort det inlägget kommer möjligheten att ta bort inlägget och redigera
+									?>
+									<span class='madeby delete'><a href='#' id='delete-<?php echo $post["id"]; ?>'>Ta bort det här inlägget</a></span>
+									<span class='madeby edit'><a href="edit.php/<?php echo $post['id']; ?>">Redigera det här inlägget</a></span>
 
 						<?php
 							} // stänger if-satsen för delete och edit knappen

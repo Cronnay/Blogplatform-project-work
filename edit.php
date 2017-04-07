@@ -1,6 +1,14 @@
 <?php
 include ("includes/head.php"); //head-taggen med alla meta attributen förutom title.
 if(isset($_SESSION['loggedin']) == true) {
+	$request = explode("/",substr(@$_SERVER['PATH_INFO'], 1)); //Kollar vad värdet efter / är. Så edit.php/x och $id blir x.
+
+	$id = $request[0];
+	if($id == null){ //ifall X är null, skickar tillbaka till index
+		header("Location: index.php");
+	}
+
+	if(editPost($_SESSION['id'], $id, $db) == true){
 	 ?>
 
 <title>Ändra inlägg</title>
@@ -9,11 +17,11 @@ if(isset($_SESSION['loggedin']) == true) {
 	<?php include("includes/nav.php"); /* Inkluderar <header> med en navigering för att det ska bli mindre kod.*/ ?>
 	<div class="container">
 		<div id='allt'>
-			<div id='create-post'>
+			<div id='edit-post'>
 				<h2 class='header-text'>Redigera ditt inlägg här</h2>
 				<div id='create-form'>
 					<form method="post" id='edit-post'>
-						<?php $result = getPost($_POST['editpost'], $db);
+						<?php $result = getPost($id, $db);
 						foreach ($result as $row){
 							 ?>
 						<label for='titel'>Titel</label><br>
@@ -27,13 +35,23 @@ if(isset($_SESSION['loggedin']) == true) {
 				</div>
 			</div>
 	</div>
+</div>
 </body>
 </html>
 
 <?php
+
+			if(isset($_POST['titel'], $_POST['text'])){
+				updatePost($_POST['titel'], $_POST['text'], $id, $db); //Uppdaterar inlägget.
+				header("Location: /web2.0/projekt/index.php");
+			}
+	} //Om session['id'] är samma som har gjort inlägget.
+	else{
+		header("Location: /web2.0/projekt/index.php"); //Ifall session['id'] inte har gjort inlägget skickas användaren till index.
+		}
  } // slut på if-satsen
 else{
-		header("Location: index.php");
-	}
+	header("Location: /web2.0/projekt/index.php"); //Ifall användaren inte är inloggad, skickar tillbaka till index.
+}
 
  ?>

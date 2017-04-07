@@ -123,4 +123,31 @@ function updatePost($titel, $text, $postid, $db){
 	$sql = "UPDATE posts SET title = '$titel', content = '$text' WHERE id = '$postid'";
 	$result = mysqli_query($db, $sql) or die("Fel vid sql-fråga");
 }
+
+function getUser($email, $db){
+	$sql = "SELECT * FROM users WHERE email = '$email'";
+	$result = mysqli_query($db, $sql) or die("Fel vid sql-fråga");
+	$array = array();
+
+	while($row = $result->fetch_assoc())
+	{
+		$array[] = $row;
+	}
+	return $array;
+}
+
+
+function updatePass($email, $pass, $db) {
+	$hash = md5($pass);
+	$sql = "UPDATE users SET password = '$hash' WHERE email = '$email'";
+
+	mysqli_query($db, $sql) or die("fel vid sql-fråga");
+}
+
+function updateName($email, $name, $db){
+	$cap = ucwords($name);
+	$sql = "UPDATE users SET name = '$cap' WHERE email = '$email'";
+
+	mysqli_query($db, $sql) or die("fel vid sql-fråga");
+}
 ?>
