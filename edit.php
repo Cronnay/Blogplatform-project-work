@@ -20,10 +20,10 @@ if(isset($_SESSION['loggedin']) == true) {
 			<div id='edit-post'>
 				<h2 class='header-text'>Redigera ditt inlägg här</h2>
 				<div id='create-form'>
-					<form method="post" id='edit-post'>
 						<?php $result = getPost($id, $db);
 						foreach ($result as $row){
 							 ?>
+	 					<form method="post" id='edit-post' action="user.php/<?php echo $row['u_id'];?>">
 						<label for='titel'>Titel</label><br>
 						<input type='text' name='titel' id='titel' value="<?php echo $row['title']; ?>"><br>
 
@@ -43,7 +43,6 @@ if(isset($_SESSION['loggedin']) == true) {
 
 			if(isset($_POST['titel'], $_POST['text'])){
 				updatePost($_POST['titel'], $_POST['text'], $id, $db); //Uppdaterar inlägget.
-				header("Location: /web2.0/projekt/index.php");
 			}
 	} //Om session['id'] är samma som har gjort inlägget.
 	else{
