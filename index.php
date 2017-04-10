@@ -9,12 +9,18 @@ include ("includes/head.php"); //head-taggen med alla meta attributen förutom t
 		<div id="posts"> <!--Den vänstra diven, för att få dit alla posts. -->
 			<div class='post'> <!-- mindre div, och blir centrerad  i posts-diven -->
 				<?php
-					$result = getPosts($db);
+					$result = getPosts($db); //Returnerar en array med alla inlägg
 					foreach ($result as $post){
+						$readmore = strip_tags($post['content']); // min funktion för att rensa. Tack vare Webbiedave på Stackoverflow som skrev denna kod för att förkorta texten.
+						if(strlen($readmore) > 400){
+							$stringCut = substr($readmore, 0, 400);
+
+							$readmore = substr($stringCut, 0, strrpos($stringCut, ' ')).'... <a href="/web2.0/projekt/user.php/' . $post['u_id'] . '/' . $post['id'] . '">Läs mer</a>';
+						}
 						?>
 					<div id='<?php echo $post["id"]; ?>'> <!-- div med unik id för att lättare hantera med jquery -->
 							<h3 class='headline-post'><?php echo $post['title']; ?></h3>
-							<p class='content'><?php echo $post['content']; ?></p>
+							<p class='content'><?php echo $readmore; ?></p>
 							<p class='madeby'>Gjordes av <a href='user.php/<?php echo $post["u_id"]; ?>'><?php echo $post['email'] . "</a>, " . $post['created']; ?></p>
 							<?php
 							if(isset($_SESSION['email'])){ //ifall $_session['email'] finns kommer resterande kod funka
@@ -36,7 +42,7 @@ include ("includes/head.php"); //head-taggen med alla meta attributen förutom t
 				?>
 					<h3 class="center plats-under">Välkommen!</h3>
 					<p><?php echo $_SESSION['email']; ?> </p>
-			<?php }
+			<?php } //Slut på if-isset. Så om Användaren inte är inloggad, så kommer det finnas möjlighet att logga in.
 			else{ ?>
 				<h3 class="center plats-under">Logga in här!</h3>
 				<form method="post" id='login-form' class="center">
@@ -51,11 +57,11 @@ include ("includes/head.php"); //head-taggen med alla meta attributen förutom t
 				<p class="error-msg"></p>
 			<?php }  // stänger else ?>
 		</div>
-		<div id="user-login">
+		<div id="user-login"> <!--Div som håller alla användare under inloggningen -->
 			<h4 class="center">De 5 senaste registrerade användarna</h4>
 			<ul id="users-ul">
 				<?php
-				$result = getAllUsers(5, $db);
+				$result = getAllUsers(5, $db); //Alla användare, som har en maxgräns på 5 stycken användare.
 
 				foreach($result as $row){ ?>
 					<li><a href="user.php/<?php echo $row['id'];?>" class="tablelink"><?php echo $row['name'];?></a></li>

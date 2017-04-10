@@ -6,11 +6,11 @@ require("/../includes/functions.php");
 
 $json = $_GET['id'];
 
-$arr = json_decode($json, true); 
+$arr = json_decode($json, true);
 
 $id = $arr[0]['id'];
 
-deletePost($id,$db);
+deletePost($id,$db); //Anropar funtionen för att ta bort ett inlägg.
 
 echo json_encode("done");
 ?>

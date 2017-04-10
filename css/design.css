@@ -3,24 +3,23 @@ body{
 	background-image: url("../img/framsida.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-
 }
-a:link{
+a:link{ /*alla länkar som standard ska vara vita */
 	color: white;
 	font-weight: normal;
 }
 a:hover{
-	color: #ccc9ce;
+	color: #ccc9ce; /*alla länkar som standard ska bli grå när man håller över elementet med musen */
 }
 a:visited{
 	color: white;
 }
-.small{
+.small{ /*När användaren inte är inloggad är så står den här för designen på nav-elementet*/
 	width: 400px;
 	margin: 0 auto;
 	margin-bottom: 20px;
 }
-.big{
+.big{ /*När användaren är inloggad är så står den här för designen på nav-elementet*/
 	width: 600px;
 	margin: 0 auto;
 	margin-bottom: 20px;
@@ -29,7 +28,6 @@ a:visited{
 	display: inline;
 }
 .inline a:link{
-	color:white;
 	text-decoration: none;
 	font-size: 14pt;
 	border-right: 1px white solid;
@@ -37,17 +35,19 @@ a:visited{
 	padding-left: 10px;
 }
 .inline a:hover{
-	color: #ccc9ce;
-	text-decoration: underline;
+	text-decoration: underline; /* Tvärtemot från vad det ska vara. håller man över musen så ska det bli en linje under texten, för att lättare indikiera att det går att klicka */
 }
 .inline a:visisted{
-	color: white;
 	text-decoration: none;
 }
-.container{
+
+.container{ /*Div-elementet som håller all information. för att ha en storlek som man alltid ska följa. */
 	margin: 0 auto;
 	width: 1000px;
 }
+
+/*Allt ovan används på alla sidor, för det är navigering, container som ska hålla i alla element */
+
 .center{
 	margin: 0 auto;
 	width: 300px;
@@ -55,24 +55,23 @@ a:visited{
 .center.plats-under{
 	padding: 10px 5px 10px 5px;
 }
-.error{
+.error{ /*Detta är för t.ex när valideringen ger ett error, så blir det i röd text.*/
 	color: red;
-	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
 }
 
-.approved{
+.approved{ /* Om användaren har lyckats skapa ett konto */
 	font-size: 8pt;
 	color: green;
 }
 
-#posts{
+#posts{ /*Index-sida. den som har alla inlägg på framsidan. Float left för att den ska vara på vänstra sidan.*/
 	float: left;
 	width: 648px;
 	background-color: rgba(255,255,255,0.4);
 	border-radius: 20px;
 	border: 1px white solid;
 }
-#login{
+#login{ /*Index-sida. Div-elementet där man loggar in. */
 	float: right;
 	width: 348px;
 	text-align: center;
@@ -80,13 +79,12 @@ a:visited{
 	border-radius:20px;
 	border: 1px white solid;
 }
-.error-msg{
+.error-msg{ /*Den här används när min ajax-funktion returnerar ett felmeddelande. */
 	display: none;
 	color: red;
 	text-align: center;
-	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
 }
-.btn{
+.btn{ /*knappen för att logga in och skapa kono.*/
 	box-shadow: rgb(0, 0, 0) 2px 3px 13px 0px;
 	background: linear-gradient(rgb(90, 43, 97) 5%, rgb(51, 51, 51) 100%) rgb(90, 43, 97);
 	border-radius: 13px;
@@ -108,7 +106,7 @@ input{
 	margin: 0 auto;
 	width: 500px;
 }
-#create-account{
+#create-account{ /*Allt som handlar om konto har en viss bakgrundsfärg, det är därför "skapa", "logga-in", och "uppdatera profil" har samma färg.*/
 	background-color: rgba(102,0,153,0.3);
 	border-radius:20px;
 	border: 1px white solid;
@@ -117,11 +115,11 @@ input{
 	text-align: center;
 	color: #333333;
 }
-.headline-post{
+.headline-post{ /*Titeln på inläggen*/
 	color: white;
 	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
 }
-.content{
+.content{ /*Texten på inläggen*/
 	color: white;
 	text-shadow: 2px 1px 8px rgba(0, 0, 0, 1);
 }
@@ -141,14 +139,14 @@ input{
 	color: #ccc9ce;
 }
 
-#allt{
+#allt{ /*div-elementet där man ska skapa ett inlägg*/
 	margin: 0 auto;
 	width: 700px;
 	background-color: rgba(255,255,255,0.4);
 	border-radius: 20px;
 	border: 1px solid white;
 }
-#create-post{
+#create-post{ /*En mindre div-element för att lättare kunna positionera*/
 	margin: 0 auto;
 	border-bottom: 2px solid rgba(0,0,0,0.6);
 	width: 500px;
@@ -156,7 +154,7 @@ input{
 .header-text{
 	text-align: center;
 }
-#create-form{
+#create-form{ /*En mindre div-element för att lättare kunna positionera*/
 	width: 400px;
 	margin: 0 auto;
 	padding-left: 20px;
@@ -169,7 +167,7 @@ textarea#text{
 	font-family: 'Roberto',sans-serif;
 
 }
-.create-btn{
+.create-btn{ /*Liknande knapp som "skapa konto" fast en annan färg*/
 	box-shadow: rgb(0, 0, 0) 2px 3px 13px 0px;
 	background: linear-gradient(rgb(118, 128, 121) 5%, rgb(35, 41, 31) 100%) rgb(118, 128, 121);
 	border-radius: 13px;
@@ -218,8 +216,10 @@ textarea#text{
     width: 30%; /* Could be more or less, depending on screen size */
 	text-align: center;
 }
+/* Popupen kommer när användaren har bytt namn eller lösenord på sitt konto. Då blir bakgrunden svår, och en liten vit ruta kommer upp förklarar att användaren kommer bli omdirigerad om några sekunder.*/
 
-#users{
+
+#users{ /*Huvud-diven för alla users*/
 	width: 800px;
 	background-color:rgba(255, 255, 255, 0.7);
 	min-height: 70%;
@@ -229,18 +229,16 @@ textarea#text{
 #users > h2{
 	text-align: center;
 }
-table{
+table{ /*Om man ska visa ALLA användare så kommer det fram en table. Därför fick den inte en unik id */
 	border-collapse: collapse;
 	margin: 0 auto;
 	width: 500px;
-}
-thead td {
 }
 td{
 	padding: 5px;
 	text-align: center;
 }
-tbody tr:nth-child(odd){
+tbody tr:nth-child(odd){ /*Så varje ojämnt tr-unge kommer ha en svart bakgrund.*/
 	background-color: rgba(195, 191, 190, 0.5);
 }
 
@@ -254,7 +252,7 @@ tbody tr:nth-child(odd){
 	text-decoration: none;
 }
 
-#user-login{
+#user-login{ /*Div-elementet som är under "logga in" på framsidan*/
 	float: right;
 	width: 348px;
 	border-radius:20px;
@@ -263,7 +261,57 @@ tbody tr:nth-child(odd){
 	text-align: center;
 }
 
-#users-ul{
+#users-ul{ /*listan på framsidan*/
 	list-style: none;
 	margin-left: -58px;
+}
+
+
+.noposts{ /*ifall användaren inte har några inlägg kommer det stå att användaren inte har några inlägg*/
+	text-align: center;
+	color: gray;
+}
+
+.userposts{ /*Ifall Man går in på en användare så dyker en ul upp.*/
+	list-style: none;
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
+.userposts > li{
+	padding: 10px;
+}
+.userposts > li:nth-child(odd){
+	background-color: rgba(195, 191, 190, 0.5);
+}
+
+#oneuseronepost{ /*Går man in på ett specifikt inlägg så visas det här div-elmentet*/
+	width:400px;
+	margin: 0 auto;
+}
+#oneuseronepost > h2{
+	text-align: center;
+}
+.brodtext{
+	font-size: 13pt;
+	padding-top: 20px;
+}
+.skapad{
+	font-size: 8pt;
+}
+.arrow{ /*En HTML-entitet för att visa att man kan gå tillbaka till dem resterande inläggen som användaren har gjort.*/
+	float:left;
+	margin-left: 10px;
+	font-size: 25pt;
+	font-weight: 400;
+}
+
+.arrow a:link{
+	color: black;
+}
+.arrow a:visited{
+	color: black;
+}
+.arrow a:hover{
+	text-decoration: none;
 }

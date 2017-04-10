@@ -1,10 +1,10 @@
 <?php
 include ("includes/head.php"); //head-taggen med alla meta attributen förutom title.
-if(isset($_SESSION['loggedin']) == true){
+if(isset($_SESSION['loggedin']) == true){ //ifall användaren inte är inloggad skickas användaren tillbaka till framsidan.
 
 	if(isset($_POST['titel'],$_POST['text'])){
-		$titel = trim($_POST['titel']);
-		$text = trim($_POST['text']);
+		$titel = trim($_POST['titel']); //trimmar texten på onödig whitespace.
+		$text = trim($_POST['text']); //trimmar texten på onödig whitespace
 
 		$email = $_SESSION['email'];
 		createPost($email,$titel,$text,$db);

@@ -12,7 +12,7 @@ $email = $arr[0]['email'];
 $name = $arr[0]['namn'];
 $pass = $arr[0]['pass'];
 
-$konto = createUser($email,$name,$pass,$db);
+$konto = createUser($email,$name,$pass,$db); //skapar ett konto, och returnerar en sträng om den är godkänd eller inte
 
 
 

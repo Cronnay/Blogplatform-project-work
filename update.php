@@ -12,11 +12,11 @@ if(isset($_SESSION['loggedin']) == true) { ?>
 				<?php $result = getUser($_SESSION['email'], $db);
 				foreach($result as $row){ ?>
 
-					<h3><?php echo $row['email']; ?></h3><br>
+					<h3><?php echo $row['email']; ?></h3><br> <!-- Email som inte går att ändra -->
 					<form method="post" id="byta-namn" autocomplete="off">
 
 						<label for="namn" class="center">Vill du byta namn?</label><br>
-						<input type="text" id="namn" class="center" name="namn" value="<?php echo $row['name']; ?>"><br>
+						<input type="text" id="namn" class="center" name="namn" value="<?php echo $row['name']; ?>"><br><!-- value="namnet" för att visa att det är det just nu -->
 						<input type="submit" class="btn" value="Byt namn">
 
 					</form>
@@ -43,7 +43,7 @@ if(isset($_SESSION['loggedin']) == true) { ?>
 			updatePass($_SESSION['email'], $pass, $db);
 			header("Location: update.php");
 		}
-		if(isset($_POST['namn'])){
+		if(isset($_POST['namn'])){ //anropar en funktion ifall användaren byter namn
 			$namn = $_POST['namn'];
 
 			updateName($_SESSION['email'], $namn, $db);
