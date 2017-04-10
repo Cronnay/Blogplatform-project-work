@@ -150,4 +150,23 @@ function updateName($email, $name, $db){
 
 	mysqli_query($db, $sql) or die("fel vid sql-fråga");
 }
+
+
+function getAllUsers($limit, $db){
+	$order ="";
+	if($limit !== ""){
+		$order = " LIMIT 5";
+	}
+
+	$sql = "SELECT * FROM users ORDER BY created DESC" . $order;
+
+	$result = mysqli_query($db, $sql) or die("Fel vid sql-fråga");
+	$array = array();
+
+	while($row = $result->fetch_assoc())
+	{
+		$array[] = $row;
+	}
+	return $array;
+}
 ?>

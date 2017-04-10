@@ -51,6 +51,18 @@ include ("includes/head.php"); //head-taggen med alla meta attributen förutom t
 				<p class="error-msg"></p>
 			<?php }  // stänger else ?>
 		</div>
+		<div id="user-login">
+			<h4 class="center">De 5 senaste registrerade användarna</h4>
+			<ul id="users-ul">
+				<?php
+				$result = getAllUsers(5, $db);
+
+				foreach($result as $row){ ?>
+					<li><a href="user.php/<?php echo $row['id'];?>" class="tablelink"><?php echo $row['name'];?></a></li>
+				<?php } ?>
+			</ul>
+			<a href="user.php" class="tablelink">Klicka här för att visa alla användare</a>
+		</div>
 	</div>
 </body>
 </html>
